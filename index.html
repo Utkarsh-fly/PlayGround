@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f5ee">
+  <title>Pocket Trails — Pokémon field journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Pocket Trails home"><span class="brand-mark">✦</span><span>pocket<span class="brand-light">trails</span></span></a>
+      <div class="resources">
+        <div class="resource" title="Poké Balls"><span class="ball-mini"><i></i></span><b id="ballCount">08</b></div>
+        <div class="resource berry-resource" title="Razz Berries"><span>🫐</span><b id="berryCount">03</b></div>
+      </div>
+      <button class="avatar" id="trainerButton" aria-label="Trainer profile">✦</button>
+    </header>
+
+    <main>
+      <section class="view active" id="exploreView">
+        <div class="welcome-row"><div><p class="eyebrow" id="greeting">A little adventure awaits</p><h1>Good morning, <span>Trainer!</span></h1></div><div class="weather"><span>☀️</span><small>72°</small></div></div>
+        <div class="location-row"><div><span class="pin">⌖</span><span id="locationLabel">Whispering Woods</span></div><button id="changeLocation" class="location-change">CHANGE <span>⌄</span></button></div>
+        <div class="habitats" id="habitats" aria-label="Choose a habitat">
+          <button class="habitat active" data-area="woods"><span>🌲</span>Woods</button>
+          <button class="habitat" data-area="shore"><span>🌊</span>Shore</button>
+          <button class="habitat" data-area="meadow"><span>🌼</span>Meadow</button>
+        </div>
+
+        <section class="field-card" aria-label="Wild Pokémon search">
+          <div class="field-sky"><div class="sun-glow"></div><span class="bird bird-one">⌁</span><span class="bird bird-two">⌁</span><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div></div>
+          <div class="mountains"><i></i><i></i><i></i></div>
+          <div class="tree-line back"><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i></div>
+          <div class="tree-line front"><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i><i>♣</i></div>
+          <div class="field-grass"></div>
+          <div class="field-label"><span class="live-dot"></span><span id="fieldStatus">WILD POKÉMON NEARBY</span><span class="weather-tag">🌤️ &nbsp;Clear skies</span></div>
+          <div class="encounter-stage" id="encounterStage">
+            <div class="sparkle sparkle-a">✦</div><div class="sparkle sparkle-b">✧</div>
+            <div class="creature-orb" id="creatureOrb"><span id="creatureEmoji">🐾</span></div>
+            <div class="stage-shadow"></div>
+            <div class="stage-caption" id="stageCaption"><span class="question-mark">?</span><span>Something's rustling...</span></div>
+          </div>
+          <div class="field-bottom"><div class="lucky-note"><span>🍀</span><span>Luck is in the air<br><b>Keep your eyes open!</b></span></div><div class="nearby-count"><b>?</b><small>nearby</small></div></div>
+        </section>
+
+        <div class="search-controls">
+          <div class="energy-line"><span>⚡</span><span>Search energy</span><div class="energy-meter"><i id="energyFill"></i></div><b id="energyText">5/5</b><span class="energy-timer" id="energyTimer"></span></div>
+          <button class="search-button" id="searchButton"><span class="search-icon">⌕</span><span><b>Search the grass</b><small>Who knows what you'll find?</small></span><span class="button-arrow">→</span></button>
+        </div>
+        <section class="daily-card"><div class="daily-icon">📒</div><div class="daily-copy"><span class="eyebrow">TODAY'S FIELD NOTE</span><b id="dailyText">Discover 3 Pokémon</b><div class="progress-track"><i id="dailyProgress"></i></div></div><span class="progress-count" id="dailyCount">0/3</span></section>
+        <div class="section-heading"><div><span class="eyebrow">YOUR JOURNEY</span><h2>Field journal</h2></div><button class="text-button" data-view="dexView">View all <span>→</span></button></div>
+        <div class="recent-row" id="recentRow"></div>
+      </section>
+
+      <section class="view" id="dexView">
+        <div class="page-heading"><span class="eyebrow">GOTTA FIND THEM ALL</span><h1>Pokédex</h1><p>Your discoveries, one lucky encounter at a time.</p></div>
+        <div class="dex-summary"><span class="dex-ball">◎</span><div><b id="dexCount">0 / 12</b><small>Pokémon discovered</small></div><div class="dex-progress"><i id="dexProgress"></i></div></div>
+        <div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="caught">Caught</button><button class="filter" data-filter="unknown">Undiscovered</button></div>
+        <div class="dex-grid" id="dexGrid"></div>
+      </section>
+
+      <section class="view" id="tasksView">
+        <div class="page-heading"><span class="eyebrow">LITTLE WINS, BIG ADVENTURES</span><h1>Field notes</h1><p>Every great journey starts with a few steps.</p></div>
+        <div class="streak-card"><div><span>🔥</span><b id="streakNumber">1 day streak</b><small>Keep your adventure going!</small></div><div class="streak-days"><i class="done">M</i><i class="done">T</i><i class="today">W</i><i>T</i><i>F</i><i>S</i><i>S</i></div></div>
+        <div class="section-heading task-heading"><div><span class="eyebrow">DAILY ADVENTURES</span><h2>Today's tasks</h2></div><span class="reset-label">Resets in 08:42:16</span></div>
+        <div class="task-list" id="taskList"></div>
+        <div class="tip-card"><span>💡</span><div><b>Lucky tip</b><p>Try different habitats to meet different Pokémon. A Razz Berry can help with tricky catches!</p></div></div>
+      </section>
+
+      <section class="view" id="bagView">
+        <div class="page-heading"><span class="eyebrow">PACKED FOR ADVENTURE</span><h1>Your bag</h1><p>Everything you need for your next big find.</p></div>
+        <div class="bag-list" id="bagList"></div>
+        <div class="bag-note"><span>🎒</span><p>Your items are always ready when luck calls. Keep exploring to find more!</p></div>
+        <div class="section-heading"><div><span class="eyebrow">A LITTLE EXTRA LUCK</span><h2>Stardust</h2></div></div>
+        <div class="stardust-card"><div class="stardust-icon">✧</div><div><b id="stardustCount">0</b><small>Stardust collected</small></div><span>✨</span></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-view="exploreView"><span class="nav-icon">⌖</span><small>Explore</small></button>
+      <button class="nav-item" data-view="dexView"><span class="nav-icon">▦</span><small>Pokédex</small></button>
+      <button class="nav-item" data-view="tasksView"><span class="nav-icon">☑</span><small>Field notes</small></button>
+      <button class="nav-item" data-view="bagView"><span class="nav-icon">▤</span><small>Bag</small></button>
+    </nav>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <section class="encounter-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <div class="modal-topline"><span class="wild-pill"><i></i> WILD ENCOUNTER</span><span class="rarity-pill" id="rarityLabel">COMMON</span></div>
+      <div class="modal-art" id="modalArt"><span class="modal-spark spark-one">✦</span><span class="modal-spark spark-two">✧</span><span id="modalEmoji">🌱</span></div>
+      <h2 id="modalTitle">A Pokémon appeared!</h2><p class="modal-subtitle" id="modalSubtitle">It looks curious...</p>
+      <div class="pokemon-type" id="pokemonType">🌿 GRASS</div>
+      <div class="catch-message" id="catchMessage">A wild Pokémon is waiting! Toss a Poké Ball?</div>
+      <div class="catch-actions"><button class="berry-button" id="berryButton"><span>🫐</span><span>Use berry<small id="berryUseCount">×3</small></span></button><button class="throw-button" id="throwButton"><span class="ball-icon">◉</span><span>Throw Poké Ball</span><small id="ballsLeft">8 left</small></button></div>
+      <button class="run-button" id="runButton">Maybe next time</button>
+    </section>
+  </div>
+  <div class="toast-layer" id="toastLayer"></div>
+  <script src="app.js"></script>
+</body>
+</html>
